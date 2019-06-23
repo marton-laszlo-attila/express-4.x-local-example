@@ -49,6 +49,8 @@ var app = express();
 app.set('views', __dirname + '/views');
 app.set('view engine', 'ejs');
 
+app.use(express.static('public'));
+
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 app.use(require('morgan')('combined'));
@@ -69,6 +71,8 @@ app.get('/',
 
 app.get('/login',
   function(req, res){
+    res.locals.hostname = req.hostname;
+    
     res.render('login');
   });
   
