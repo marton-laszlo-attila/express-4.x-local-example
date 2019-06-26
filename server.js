@@ -86,6 +86,7 @@ passport.deserializeUser(function(id, cb) {
 
 
 
+var indexRouter = require('./routes/index');
 var loginRouter = require('./routes/login');
 var accountRouter = require('./routes/account');
 
@@ -107,12 +108,7 @@ app.use(require('express-session')({ secret: 'keyboard cat', resave: false, save
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Define routes.
-app.get('/',
-  function(req, res) {
-    res.render('home', { title: 'Passport.js Example', user: req.user });
-  });
-
+app.use('/', indexRouter);
 app.use('/', loginRouter);
 app.use('/account', accountRouter);
 
