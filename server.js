@@ -86,6 +86,7 @@ passport.deserializeUser(function(id, cb) {
 
 
 
+var loginRouter = require('./routes/login');
 var accountRouter = require('./routes/account');
 
 // Create a new Express application.
@@ -112,21 +113,8 @@ app.get('/',
     res.render('home', { user: req.user });
   });
 
+app.use('/', loginRouter);
 app.use('/account', accountRouter);
-
-
-app.get('/login',
-  function(req, res){
-    res.render('login');
-  });
-  
-app.post('/login', require('./handlers/login'));
-  
-app.get('/logout',
-  function(req, res){
-    req.logout();
-    res.redirect('/');
-  });
 
 app.get('/profile',
   require('connect-ensure-login').ensureLoggedIn(),
