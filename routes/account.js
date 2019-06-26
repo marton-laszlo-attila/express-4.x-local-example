@@ -1,7 +1,13 @@
+var express = require('express');
 var db = require('../db');
+var router = express.Router();
 
+/* GET users listing. */
+router.get('/new', function(req, res, next) {
+  res.render('register');
+});
 
-function createUser(req, res, next) {
+router.post('/', function(req, res, next) {
   console.log('REGISTER!');
   console.log(req.body);
   
@@ -22,14 +28,7 @@ function createUser(req, res, next) {
   id: '89d5109d-5805-4738-a8c4-32dbdd60ed31',
   rev: '1-7572cb8419d46d6b797f1a0c89a0e2a2' }
     */
-    
-    //if (!err) {
-    //  console.log('Successfully posted a todo!');
-    //}
   });
-}
+});
 
-
-exports = module.exports = [
-  createUser
-];
+module.exports = router;
