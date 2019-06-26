@@ -67,16 +67,16 @@ app.get('/',
     res.render('home', { user: req.user });
   });
 
+app.get('/register', require('./handlers/create'));
+app.post('/register', require('./handlers/register'));
+
+
 app.get('/login',
   function(req, res){
     res.render('login');
   });
   
-app.post('/login', 
-  passport.authenticate('local', { failureRedirect: '/login' }),
-  function(req, res) {
-    res.redirect('/');
-  });
+app.post('/login', require('./handlers/login'));
   
 app.get('/logout',
   function(req, res){
