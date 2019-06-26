@@ -12,12 +12,41 @@ var db = require('./db');
 // will be set at `req.user` in route handlers after authentication.
 passport.use(new Strategy(
   function(username, password, cb) {
+    console.log('FIND USERNAME')
+    console.log(username);
+    
+    var query = {
+      selector: { username: username }
+    };
+    
+    db.people.find(query, function(err, result) {
+      console.log(err);
+      console.log(result);
+      
+      if (err) { return cb(err); }
+      var doc = result.docs[0];
+      
+      console.log(doc);
+      
+      if (doc.password != password) { return cb(null, false); }
+      
+      var user = {
+        id: doc._id,
+        username: doc.username,
+        displayName: doc.displayName
+      }
+      return cb(null, user);
+    });
+    
+    
+    /*
     db.users.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
       return cb(null, user);
     });
+    */
   }));
 
 
@@ -33,10 +62,25 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(id, cb) {
+  db.people.get(id, function(err, doc) {
+    // TODO: handle 'not_found' error
+    if (err) { return cb(err); }
+    
+    var user = {
+      id: doc._id,
+      username: doc.username,
+      displayName: doc.displayName
+    }
+    return cb(null, user);
+  });
+  
+  
+  /*
   db.users.findById(id, function (err, user) {
     if (err) { return cb(err); }
     cb(null, user);
   });
+  */
 });
 
 

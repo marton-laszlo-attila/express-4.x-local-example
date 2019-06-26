@@ -6,7 +6,9 @@ function createUser(req, res, next) {
   console.log(req.body);
   
   var user = {
-    displayName: req.body.name
+    displayName: req.body.name,
+    username: req.body.username,
+    password: req.body.password
   };
   
   // FIXME: rename to users
