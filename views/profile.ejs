@@ -1,3 +1,11 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Passport</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include('header') -%>
 <p>
 ID: <%= user.id %><br/>
 Username: <%= user.username %><br/>
@@ -6,4 +14,5 @@ Name: <%= user.displayName %><br/>
 Email: <%= user.emails[0].value %><br/>
 <% } %>
 </p>
-<a href="/logout">Log out</a>
+  </body>
+</html>

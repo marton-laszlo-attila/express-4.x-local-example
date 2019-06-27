@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
+    <title>Passport</title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
     <%- include('header') -%>
-    
   <% if (!user) { %>
   	<h1>Hello.</h1>
   <% } else { %>
   	<h1>Hello, <%= user.username %>.</h1>
   <% } %>
     <p>
-      Welcome to <%= title %>! This app is an example of how to implement username and
+      Welcome to Passport! This app is an example of how to implement username and
       password authentication.  Follow along with the tutorial or view the <a href="https://github.com/passport/express-4.x-local-example">source code</a>.
     </p>
   </body>
