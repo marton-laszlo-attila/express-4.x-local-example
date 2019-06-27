@@ -4,13 +4,14 @@
     <title><%= title %></title>
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
-
   <body>
-<% if (!user) { %>
-	<h1>Welcome! Please <a href="/login">log in</a>.</h1>
-<% } else { %>
-	<h1>Hello, <%= user.username %>. View your <a href="/profile">profile</a>.</h1>
-<% } %>
+    <%- include('header') -%>
+    
+  <% if (!user) { %>
+  	<h1>Hello.</h1>
+  <% } else { %>
+  	<h1>Hello, <%= user.username %>.</h1>
+  <% } %>
     <p>
       Welcome to <%= title %>! This app is an example of how to implement username and
       password authentication.  Follow along with the tutorial or view the <a href="https://github.com/passport/express-4.x-local-example">source code</a>.
