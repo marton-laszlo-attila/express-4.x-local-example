@@ -31,4 +31,10 @@ router.post('/', function(req, res, next) {
   });
 });
 
+router.get('/',
+  require('connect-ensure-login').ensureLoggedIn(),
+  function(req, res, next) {
+    res.render('profile', { user: req.user });
+  });
+
 module.exports = router;
