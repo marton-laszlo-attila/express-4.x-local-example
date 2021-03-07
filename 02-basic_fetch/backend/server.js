@@ -56,6 +56,10 @@ var app = express();
 app.set('views', __dirname + '/../frontend/build');
 app.set('view engine', 'ejs');
 
+// Configure static folder
+// (login-script.js)
+app.use(express.static(__dirname + '/../frontend/build'));
+
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
 
