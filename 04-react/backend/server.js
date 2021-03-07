@@ -86,16 +86,20 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 // Define routes.
-app.get('/',
-  function (req, res) {
-    res.render('home', { user: req.user });
-  });
+// app.get('/:id',
+//   function (req, res) {
+//     res.sendFile(__dirname + '/../frontend/build/index.html');
+//   });
 
-app.get('/login',
-  function (req, res) {
-    res.render('login');
-  });
+// app.get('/login',
+//   function (req, res) {
+//     res.render('login');
+//   });
 
+// app.post('/login', function (req, res, next) {
+//   console.log('vettem');
+//   console.log(req.body);
+// });
 app.post('/login', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err) { return next(err); }
@@ -114,22 +118,22 @@ app.post('/login', function (req, res, next) {
   })(req, res, next);
 });
 
-app.get('/logout',
-  function (req, res) {
-    req.logout();
-    res.redirect('/');
-  });
+// app.get('/logout',
+//   function (req, res) {
+//     req.logout();
+//     res.redirect('/');
+//   });
 
-app.get('/profile',
-  connectEnsureLogin.ensureLoggedIn(),
-  function (req, res) {
-    res.render('profile', { user: req.user });
-  });
+// app.get('/profile',
+//   connectEnsureLogin.ensureLoggedIn(),
+//   function (req, res) {
+//     res.render('profile', { user: req.user });
+//   });
 
-app.get('/registration',
-  function (req, res) {
-    res.render('registration');
-  });
+// app.get('/registration',
+//   function (req, res) {
+//     res.render('registration');
+//   });
 
 app.post('/registration',
   function (req, res) {
@@ -149,4 +153,4 @@ app.post('/registration',
     });
   });
 
-app.listen(3000);
+app.listen(8000);
