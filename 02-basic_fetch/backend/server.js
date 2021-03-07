@@ -1,7 +1,9 @@
 var express = require('express');
 var passport = require('passport');
-var flash = require('connect-flash');
+var expressSession = require('express-session');
+var morgan = require('morgan');
 var Strategy = require('passport-local').Strategy;
+// Loading database
 var db = require('./db');
 
 
@@ -14,9 +16,15 @@ var db = require('./db');
 passport.use(new Strategy(
   function (username, password, cb) {
     db.users.findByUsername(username, function (err, user) {
-      if (err) { return cb(err); }
-      if (!user) { return cb(null, false, "Username not exist"); }
-      if (user.password != password) { return cb(null, false, "Username exist, but the password wrong"); }
+      if (err) {
+        return cb(err);
+      }
+      if (!user) {
+        return cb(null, false, "Username not exist");
+      }
+      if (user.password != password) {
+        return cb(null, false, "Username exist, but the password wrong");
+      }
       return cb(null, user, 'OK');
     });
   }));
@@ -49,16 +57,16 @@ app.set('view engine', 'ejs');
 
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
-app.use(require('morgan')('combined'));
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('body-parser').json());
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+
+app.use(morgan('combined'));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
 
 // Define routes.
 app.get('/',
@@ -71,24 +79,26 @@ app.get('/login',
     res.render('login');
   });
 
-// app.post('/login',
-//   passport.authenticate('local', {
-//     failureRedirect: '/login'
-//   }),
-//   function (req, res) {
-//     console.log('This is request data --------->', req.body);
-//     res.redirect('/');
-//   });
-//
-
 app.post('/login', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {
     if (err) { return next(err); }
-    if (!user) { return res.status(404).send({ error: { status: 404, message: info } }); }
+    if (!user) {
+      return res
+        .status(404)
+        .send(
+          { error: { status: 404, message: info } }
+        );
+    }
     req.logIn(user, function (err) {
       if (err) { return next(err); }
-      // all ok, send user object, and error
-      return res.send({ user: user, error: { status: 200, message: 'OK' } });
+      return res
+        .status(200)
+        .send(
+          {
+            user: user,
+            error: { status: 200, message: 'OK' }
+          }
+        );
     });
   })(req, res, next);
 });
