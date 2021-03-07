@@ -40,13 +40,11 @@ passport.deserializeUser(function (id, cb) {
 });
 
 
-
-
 // Create a new Express application.
 var app = express();
 
 // Configure view engine to render EJS templates.
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/../frontend/build');
 app.set('view engine', 'ejs');
 
 // Use application-level middleware for common functionality, including
@@ -74,7 +72,6 @@ app.get('/login',
 app.post('/login',
   passport.authenticate('local', { failureRedirect: '/login' }),
   function (req, res) {
-    console.log('This is request data --------->', req.body);
     res.redirect('/');
   });
 

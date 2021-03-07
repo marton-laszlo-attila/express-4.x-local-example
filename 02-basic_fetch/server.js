@@ -79,6 +79,7 @@ app.get('/login',
 //     console.log('This is request data --------->', req.body);
 //     res.redirect('/');
 //   });
+//
 
 app.post('/login', function (req, res, next) {
   passport.authenticate('local', function (err, user, info) {

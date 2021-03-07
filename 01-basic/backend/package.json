@@ -1,21 +1,22 @@
 {
-  "name": "express-4.x-local-example",
+  "name": "local-example-basic-and-react",
   "version": "0.0.0",
   "description": "Express 4.x app using Passport for authentication with username and password.",
   "keywords": [
     "example",
     "express",
-    "passport"
+    "passport",
+    "basic"
   ],
-  "author": "Jared Hanson",
+  "author": "Márton László Attila (Jared Hanson)",
   "license": "Unlicense",
-  "homepage": "https://github.com/passport/express-4.x-local-example",
+  "homepage": "https://github.com/marton-laszlo-attila/express-4.x-local-example-basic-and-react",
   "repository": {
     "type": "git",
-    "url": "git://github.com/passport/express-4.x-local-example.git"
+    "url": "git@github.com:marton-laszlo-attila/express-4.x-local-example-basic-and-react.git"
   },
   "bugs": {
-    "url": "https://github.com/passport/express-4.x-local-example/issues"
+    "url": "https://github.com/marton-laszlo-attila/express-4.x-local-example-basic-and-react/issues"
   },
   "dependencies": {
     "body-parser": "^1.19.0",
