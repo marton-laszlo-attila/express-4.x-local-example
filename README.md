@@ -30,7 +30,7 @@ $ npm run build
 Start the server.
 
 ```bash
-$ node server.js
+$ node server.js (in the /backend folder)
 ```
 
 Open a web browser and navigate to [http://localhost:8000/](http://127.0.0.1:8000/)
