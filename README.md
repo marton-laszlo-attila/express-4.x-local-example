@@ -3,6 +3,8 @@ This example demonstrates how to use [Express](http://expressjs.com/) 4.x and
 password with [form-based authentication](https://en.wikipedia.org/wiki/HTTP%2BHTML_form-based_authentication).
 Use this example as a starting point for your own web applications.
 
+Made based on the example of [express-4.x-local-example](https://github.com/passport/express-4.x-local-example) by Jared Hanson.
+
 ## Instructions
 
 To install this example on your computer, clone the repository and install
