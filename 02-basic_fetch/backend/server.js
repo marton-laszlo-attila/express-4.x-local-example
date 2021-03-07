@@ -14,9 +14,9 @@ var db = require('./db');
 passport.use(new Strategy(
   function (username, password, cb) {
     db.users.findByUsername(username, function (err, user) {
-      if (err) { console.log('error'); return cb(err); }
-      if (!user) { console.log('not user'); return cb(null, false, "Username not exist"); }
-      if (user.password != password) { console.log('user ok but pass no'); return cb(null, false, "Username exist, but the password wrong"); }
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false, "Username not exist"); }
+      if (user.password != password) { return cb(null, false, "Username exist, but the password wrong"); }
       return cb(null, user, 'OK');
     });
   }));
@@ -44,7 +44,7 @@ passport.deserializeUser(function (id, cb) {
 var app = express();
 
 // Configure view engine to render EJS templates.
-app.set('views', __dirname + '/views');
+app.set('views', __dirname + '/../frontend/build');
 app.set('view engine', 'ejs');
 
 // Use application-level middleware for common functionality, including
