@@ -1,6 +1,10 @@
 var express = require('express');
 var passport = require('passport');
+var expressSession = require('express-session');
+var morgan = require('morgan');
+var connectEnsureLogin = require('connect-ensure-login');
 var Strategy = require('passport-local').Strategy;
+// Loading database
 var db = require('./db');
 
 
@@ -49,9 +53,9 @@ app.set('view engine', 'ejs');
 
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
-app.use(require('morgan')('combined'));
-app.use(require('body-parser').urlencoded({ extended: true }));
-app.use(require('express-session')({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
+app.use(morgan('combined'));
+app.use(express.urlencoded({ extended: true }));
+app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
 // Initialize Passport and restore authentication state, if any, from the
 // session.
@@ -82,7 +86,7 @@ app.get('/logout',
   });
 
 app.get('/profile',
-  require('connect-ensure-login').ensureLoggedIn(),
+  connectEnsureLogin.ensureLoggedIn(),
   function (req, res) {
     res.render('profile', { user: req.user });
   });
