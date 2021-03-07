@@ -1,6 +1,6 @@
 const start = () => {
 
-  const handleSumbit = (event) => {
+  const handleSubmit = (event) => {
     event.preventDefault();
     const username = event.target.username.value;
     const password = event.target.password.value;
@@ -25,7 +25,7 @@ const start = () => {
       });
   }
 
-  window.addEventListener('submit', handleSumbit);
+  window.addEventListener('submit', handleSubmit);
 }
 
 window.addEventListener('load', start);
