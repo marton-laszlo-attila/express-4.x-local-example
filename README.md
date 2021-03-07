@@ -16,7 +16,7 @@ $ cd express-4.x-local-example-basic-and-react
 $ go to one of the folder
   > 01-basic
   > 02-fetch
-  > 03-fetch_and_bsrypt
+  > 03-fetch_and_bcrypt
   > 04-react
 $ cd backend
 $ npm install
