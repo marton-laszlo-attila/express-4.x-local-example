@@ -1,8 +1,15 @@
+// Fast, unopinionated, minimalist web framework for node.
 var express = require('express');
+// Simple, unobtrusive authentication for Node.js
 var passport = require('passport');
+// Simple server side session middleware.
 var expressSession = require('express-session');
+// HTTP request logger middleware for node.js
 var morgan = require('morgan');
+// This middleware ensures that a user is logged in.
 var connectEnsureLogin = require('connect-ensure-login');
+// Assport strategy for authenticating with a username and password.  
+// See some another strategy: http://www.passportjs.org/packages
 var Strategy = require('passport-local').Strategy;
 // Loading database
 var db = require('./db');
@@ -57,13 +64,13 @@ app.set('views', __dirname + '/../frontend/build');
 app.set('view engine', 'ejs');
 
 // Configure static folder
+// To load login-script.js
 app.use(express.static(__dirname + '/../frontend/build'));
 
 // Use application-level middleware for common functionality, including
 // logging, parsing, and session handling.
-
 app.use(morgan('combined'));
-app.use(express.urlencoded({ extended: true }));
+// So that the server can receive the fetch data. 
 app.use(express.json());
 app.use(expressSession({ secret: 'keyboard cat', resave: false, saveUninitialized: false }));
 
