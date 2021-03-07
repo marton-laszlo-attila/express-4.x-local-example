@@ -13,11 +13,11 @@ dependencies.
 ```bash
 $ git clone git@github.com:marton-laszlo-attila/express-4.x-local-example-basic-and-react.git
 $ cd express-4.x-local-example-basic-and-react
-$ go to one of the root folder
-$$ 01-basic
-$$ 02-fetch
-$$ 03-fetch_and_bsrypt
-$$ 04-react
+$ go to one of the folder
+> 01-basic
+> 02-fetch
+> 03-fetch_and_bsrypt
+> 04-react
 $ cd backend
 $ npm install
 
