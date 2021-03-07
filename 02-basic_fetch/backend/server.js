@@ -2,6 +2,7 @@ var express = require('express');
 var passport = require('passport');
 var expressSession = require('express-session');
 var morgan = require('morgan');
+var connectEnsureLogin = require('connect-ensure-login');
 var Strategy = require('passport-local').Strategy;
 // Loading database
 var db = require('./db');
@@ -110,7 +111,7 @@ app.get('/logout',
   });
 
 app.get('/profile',
-  require('connect-ensure-login').ensureLoggedIn(),
+  connectEnsureLogin.ensureLoggedIn(),
   function (req, res) {
     res.render('profile', { user: req.user });
   });
